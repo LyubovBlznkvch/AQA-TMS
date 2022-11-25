@@ -1,0 +1,7 @@
+allure-results/
+/allure-report/
+**/*/assets
+**/*/assets/reports
+*/assets
+node-modules/
+node_modules
