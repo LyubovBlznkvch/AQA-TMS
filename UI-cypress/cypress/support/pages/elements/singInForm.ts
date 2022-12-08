@@ -27,14 +27,6 @@ export class SignInForm {
     public getSubmitButton() {
         return cy.get('button[data-testid="loginSubmit"]').contains('Войти');
     }
-    public performValidLoginInput() {
-        this.getLoginInput().type(validLogin);
-        this.getSubmitButton().click();
-    }
-    public performPassswordInput(password: string) {
-        this.getPasswordInput().type(password);
-        this.getSubmitButton().click();
-    }
     public performSignIn(login: string, password: string) {
         this.getLoginInput().type(login);
         this.getPasswordInput().type(password);

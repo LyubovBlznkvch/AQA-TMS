@@ -1,6 +1,6 @@
 import superagent from "superagent";
 import { expect } from "@jest/globals";
-import { baseURL, name, numberOfPosts, postId, surname, userId } from "./utils/constants"
+import { baseURL, name, numberOfPosts, numberOfUsers, postId, surname, userId } from "./utils/constants"
 
 let response: any;
 
@@ -25,7 +25,7 @@ describe("HTTPS methods tests", () => {
                 throw new Error(err.massage);
               };
             expect(response.status).toBe(200);
-            expect(response.body.length).toBe(10);
+            expect(response.body.length).toBe(numberOfUsers);
         });
 
         test("Should correctly read POST response", async () => {
@@ -39,7 +39,7 @@ describe("HTTPS methods tests", () => {
           expect(response.body.name).toEqual(name);
           expect(response.body.surname).toEqual(surname);
           expect(response.body.userId).toEqual(userId);
-          expect(response.body.id).toEqual(101);
+          expect(response.body.id).toEqual(numberOfPosts + 1 );
         });
 
         test("Should correctly read PATCH response", async () => {
@@ -61,7 +61,7 @@ describe("HTTPS methods tests", () => {
             throw new Error(err.massage);
         };
             expect(response.status).toBe(200);
-            expect(response.body.id).toEqual(Number(`${postId}`));
+            expect(response.body.id).toEqual(postId);
             expect(response.body.name).toEqual(name);
             expect(response.body.surname).toEqual(surname);
             expect(response.body.userId).toEqual(userId);

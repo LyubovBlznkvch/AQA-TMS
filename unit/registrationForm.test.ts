@@ -1,17 +1,12 @@
 import { RegistrationForm } from "./src/registrationForm";
 import { expect } from "chai";
-import { ERROR_MESSAGES, USER_NAMES } from "./utils/types";
+import { ERROR_MESSAGES, PASSWORD, USER_NAMES } from "./utils/types";
 
-let registrationForm: any;
-export const VALID_EMAIL = "l.y.u.b.o.v@gmail.com";
-export const VALID_PASSWORD_OF_8_SYMBOLS = "9Aamdsa_";
-export const VALID_PASSWORD_OF_9_SYMBOLS = "1yecfgaA#";
-export const VALID_PASSWORD_OF_10_SYMBOLS ="99Aammdsa_";
+const registrationForm = new RegistrationForm();
+
+const VALID_EMAIL = "l.y.u.b.o.v@gmail.com";
 
 describe("Test for Registration form", () => {
- before("Create class instance", () => {
-    registrationForm = new RegistrationForm;
- });
  describe("Positive tests", () => {
     it("Should accept user name of 3 symbols", () => {
         expect(registrationForm.setUserName(USER_NAMES.NAME_OF_3_SYMBOLS)).to.be.equal(USER_NAMES.NAME_OF_3_SYMBOLS);
@@ -26,13 +21,13 @@ describe("Test for Registration form", () => {
         expect(registrationForm.setEmail(VALID_EMAIL)).to.be.equal(VALID_EMAIL);
     });
     it("Should accept valid password of 8 symbols", () => {
-        expect(registrationForm.setPassword(VALID_PASSWORD_OF_8_SYMBOLS)).to.be.equal(VALID_PASSWORD_OF_8_SYMBOLS);
+        expect(registrationForm.setPassword(PASSWORD.VALID_PASSWORD_OF_8_SYMBOLS)).to.be.equal(PASSWORD.VALID_PASSWORD_OF_8_SYMBOLS);
     });
     it("Should accept valid password of 10 symbols", () => {
-        expect(registrationForm.setPassword(VALID_PASSWORD_OF_10_SYMBOLS)).to.be.equal(VALID_PASSWORD_OF_10_SYMBOLS);
+        expect(registrationForm.setPassword(PASSWORD.VALID_PASSWORD_OF_10_SYMBOLS)).to.be.equal(PASSWORD.VALID_PASSWORD_OF_10_SYMBOLS);
     });
     it("Should match previously entered password", () => {
-        expect(registrationForm.setPasswordConfirmation(VALID_PASSWORD_OF_9_SYMBOLS, VALID_PASSWORD_OF_9_SYMBOLS)).to.be.true;
+        expect(registrationForm.setPasswordConfirmation(PASSWORD.VALID_PASSWORD_OF_9_SYMBOLS, PASSWORD.VALID_PASSWORD_OF_9_SYMBOLS)).to.be.true;
     });
  });
  describe("Negative tests", () => {
@@ -46,7 +41,7 @@ describe("Test for Registration form", () => {
         expect(() => registrationForm.setPassword("sdD2jfss")).to.throw(ERROR_MESSAGES.INVALID_PASSWORD);
     });
     it("Should reject registration with two different passwords", () => {
-        expect(() => registrationForm.setPasswordConfirmation(VALID_PASSWORD_OF_8_SYMBOLS, "2Aamdsa_")).to.throw(ERROR_MESSAGES.PASSWORD_CONFIRMATION_FAILED);
+        expect(() => registrationForm.setPasswordConfirmation(PASSWORD.VALID_PASSWORD_OF_8_SYMBOLS, "2Aamdsa_")).to.throw(ERROR_MESSAGES.PASSWORD_CONFIRMATION_FAILED);
     });
 
  });

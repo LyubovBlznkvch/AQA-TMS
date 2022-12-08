@@ -59,28 +59,28 @@ describe("21vek.by tests - Sign-in form", () => {
         homePage.signInForm.getSignInForm().should('be.visible');
     });
 
-    it("Should display correct error massage after sign-in with password only", () => {
-        homePage.signInForm.performPassswordInput(invalidPassword);
+    it("Should display correct error message after sign-in with password only", () => {
+        homePage.signInForm.performSignIn(" ", invalidPassword);
         homePage.signInForm.getErrorMassage().invoke("text").then(( text:string ) => {
             expect(text).to.include(ERROR_MESSAGES.EMPTY_LOGIN_FIELD);
         });
     });
 
-    it("Should display correct error massage after sign-in with login only", () => {
-        homePage.signInForm.performValidLoginInput();
+    it("Should display correct error message after sign-in with login only", () => {
+        homePage.signInForm.performSignIn(validLogin, " ");
         homePage.signInForm.getErrorMassage().invoke("text").then(( text:string ) => {
             expect(text).to.include(ERROR_MESSAGES.EMPTY_PASSWORD_FIELD);
         });
     });
 
-    it("Should display correct error massage after sign-in with invalid password", () => {
+    it("Should display correct error message after sign-in with invalid password", () => {
         homePage.signInForm.performSignIn(validLogin, invalidPassword);
         homePage.signInForm.getErrorMassage().invoke("text").then(( text:string ) => {
             expect(text).to.include(ERROR_MESSAGES.INVALID_PASSWORD);
         });
     });
 
-    it("Should display correct error massage after sign-in with invalid login", () => {
+    it("Should display correct error message after sign-in with invalid login", () => {
         homePage.signInForm.performSignIn(invalidLogin, invalidPassword);
         homePage.signInForm.getErrorMassage().invoke("text").then(( text:string ) => {
             expect(text).to.include(ERROR_MESSAGES.INVALID_LOGIN);
